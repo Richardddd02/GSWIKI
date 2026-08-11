@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b0c0d" />
+  <meta name="description" content="《放置之路》玩家构筑图鉴：浏览、筛选、查看并登记 BD。" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%278%27 fill=%27%230b0c0d%27/%3E%3Ctext x=%2732%27 y=%2744%27 text-anchor=%27middle%27 font-size=%2740%27 fill=%27%23edc87a%27%3E路%3C/text%3E%3C/svg%3E" />
+  <title>构筑档案｜放置之路 BD 图鉴</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip-link" href="#builds">跳到构筑列表</a>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="返回首页">
+      <span class="brand-mark" aria-hidden="true">路</span>
+      <span>
+        <strong>构筑档案</strong>
+        <small>放置之路 · BUILD ARCHIVE</small>
+      </span>
+    </a>
+    <nav class="desktop-nav" aria-label="主导航">
+      <a href="#chronicle">古神编年史</a>
+      <a href="#builds">浏览 BD</a>
+      <a href="#guide">登记说明</a>
+      <button class="button button-primary open-submit" type="button">登记 BD</button>
+    </nav>
+    <button class="menu-button" type="button" aria-label="打开菜单" aria-expanded="false">菜单</button>
+  </header>
+
+  <main id="top">
+    <section class="hero section-shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <div class="eyebrow"><span></span> 玩家共同维护的构筑资料库</div>
+        <h1 id="hero-title">把散落的心得，<br /><em>整理成一条可走的路。</em></h1>
+        <p>从技能加点、核心装备到阵容机制，快速找到适合自己的 BD；也可以登记你的方案，让下一位玩家少走弯路。</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#builds">开始找 BD</a>
+          <button class="button button-ghost open-submit" type="button">登记我的构筑</button>
+        </div>
+        <dl class="hero-stats" aria-label="资料库概览">
+          <div><dt id="build-count">7</dt><dd>套构筑</dd></div>
+          <div><dt>3</dt><dd>种阵容体系</dd></div>
+          <div><dt>46</dt><dd>张实装参考</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero-visual" aria-label="战法神构筑预览">
+        <div class="orbit-label orbit-label-top">电法 · 输出</div>
+        <figure class="skill-panel skill-panel-a">
+          <img src="assets/builds/battle-mage-skill.webp" alt="电法技能加点参考" />
+        </figure>
+        <figure class="skill-panel skill-panel-b">
+          <img src="assets/builds/warrior-tank-skill.webp" alt="战士坦克技能加点参考" />
+        </figure>
+        <figure class="skill-panel skill-panel-c">
+          <img src="assets/builds/priest-skill.webp" alt="神官技能加点参考" />
+        </figure>
+        <div class="hero-seal" aria-hidden="true"><span>战</span><span>法</span><span>神</span></div>
+        <div class="orbit-label orbit-label-bottom">三职业闭环 · 稳定推进</div>
+      </div>
+    </section>
+
+    <section class="chronicle-entry section-shell" id="chronicle" aria-labelledby="chronicle-title">
+      <div class="chronicle-copy">
+        <div class="section-number">00 / CHRONICLE</div>
+        <p class="chronicle-kicker">0.3.2.0 · 古神复苏资料库</p>
+        <h2 id="chronicle-title">古神编年史</h2>
+        <p>收录装备、职业技能、符文、符文之语与关键道具。支持全局搜索、品质和职业筛选，并可打开原始图鉴查看完整属性。</p>
+        <div class="chronicle-actions">
+          <a class="button button-primary" href="ancient-god-chronicle/">进入编年史 <span aria-hidden="true">→</span></a>
+          <span>583 条可检索档案</span>
+        </div>
+      </div>
+      <a class="chronicle-visual" href="ancient-god-chronicle/" aria-label="打开古神编年史">
+        <span class="chronicle-version">THE OLD GOD ARCHIVE</span>
+        <span class="chronicle-seal" aria-hidden="true">◈</span>
+        <span class="chronicle-categories">装备 263 · 技能 135 · 符文体系 156</span>
+      </a>
+    </section>
+
+    <section class="archive-intro section-shell" id="builds" aria-labelledby="archive-title">
+      <div>
+        <div class="section-number">01 / ARCHIVE</div>
+        <h2 id="archive-title">构筑图鉴</h2>
+      </div>
+      <p>先看定位，再看门槛。每套 BD 都把最关键的机制、技能和装备放在第一层。</p>
+    </section>
+
+    <section class="explorer section-shell" aria-label="BD 筛选与列表">
+      <div class="filter-rail">
+        <label class="search-field">
+          <span>搜索构筑</span>
+          <input id="search-input" type="search" placeholder="名称、职业或装备…" autocomplete="off" />
+          <kbd>/</kbd>
+        </label>
+        <div class="filter-group" aria-labelledby="role-filter-label">
+          <div class="filter-heading" id="role-filter-label">定位</div>
+          <div class="filter-buttons" id="role-filters">
+            <button class="filter-button active" type="button" data-filter="全部">全部</button>
+            <button class="filter-button" type="button" data-filter="输出">输出</button>
+            <button class="filter-button" type="button" data-filter="坦克">坦克</button>
+            <button class="filter-button" type="button" data-filter="辅助">辅助</button>
+            <button class="filter-button" type="button" data-filter="混合">混合</button>
+          </div>
+        </div>
+        <label class="select-field">
+          <span>上手难度</span>
+          <select id="difficulty-filter">
+            <option value="全部">全部难度</option>
+            <option value="入门">入门</option>
+            <option value="进阶">进阶</option>
+            <option value="高阶">高阶</option>
+          </select>
+        </label>
+        <button class="text-button" id="clear-filters" type="button">清除筛选</button>
+      </div>
+
+      <div class="build-results">
+        <div class="results-meta">
+          <span id="results-count">显示 7 套构筑</span>
+          <span class="source-note">素材来自《放置之路BD.xlsx》</span>
+        </div>
+        <div class="build-grid" id="build-grid" aria-live="polite"></div>
+        <div class="empty-state" id="empty-state" hidden>
+          <span>没有找到匹配的构筑</span>
+          <p>试试更短的关键词，或者登记一套新的 BD。</p>
+          <button class="button button-primary open-submit" type="button">登记 BD</button>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide section-shell" id="guide" aria-labelledby="guide-title">
+      <div class="guide-heading">
+        <div class="section-number">02 / CONTRIBUTE</div>
+        <h2 id="guide-title">一套好 BD，<br />不只是装备清单。</h2>
+      </div>
+      <ol class="guide-steps">
+        <li><span>01</span><div><strong>说明目标</strong><p>阵容解决什么问题，适合开荒、推进还是高层挑战。</p></div></li>
+        <li><span>02</span><div><strong>写清机制</strong><p>哪些技能和装备形成闭环，哪些是不可替代的核心。</p></div></li>
+        <li><span>03</span><div><strong>标注门槛</strong><p>把必备、可替换和词条优先级区分开，方便玩家照着做。</p></div></li>
+      </ol>
+      <div class="guide-cta">
+        <p>你的方案不必完美，<br />只要足够真实、足够清楚。</p>
+        <button class="button button-light open-submit" type="button">开始登记</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer section-shell">
+    <div class="brand brand-footer">
+      <span class="brand-mark" aria-hidden="true">路</span>
+      <span><strong>构筑档案</strong><small>PLAYER-MADE KNOWLEDGE</small></span>
+    </div>
+    <p>非官方玩家资料站 · 登记内容仅保存在当前浏览器</p>
+    <a href="#top">回到顶部 ↑</a>
+  </footer>
+
+  <dialog class="detail-dialog" id="detail-dialog">
+    <div class="dialog-frame">
+      <button class="dialog-close" type="button" data-close-dialog aria-label="关闭详情">关闭 ×</button>
+      <div id="detail-content"></div>
+    </div>
+  </dialog>
+
+  <dialog class="submit-dialog" id="submit-dialog">
+    <div class="submit-layout">
+      <div class="submit-aside">
+        <div>
+          <span class="section-number">NEW BUILD</span>
+          <h2>登记你的<br />构筑思路</h2>
+          <p>先记录关键机制与门槛。提交后会立即加入当前浏览器里的构筑图鉴。</p>
+        </div>
+        <div class="privacy-note"><span>本地保存</span>不会上传到服务器，也不会读取你的账号信息。</div>
+      </div>
+      <form id="submit-form" class="submit-form">
+        <div class="form-header">
+          <span>基本信息</span>
+          <button class="dialog-close inline-close" type="button" data-close-dialog aria-label="关闭登记表单">关闭 ×</button>
+        </div>
+        <div class="field-grid two-columns">
+          <label><span>BD 名称 *</span><input name="name" required maxlength="30" placeholder="例如：冰火双法" /></label>
+          <label><span>登记人</span><input name="author" maxlength="20" placeholder="你的游戏昵称" /></label>
+        </div>
+        <div class="field-grid three-columns">
+          <label><span>主要定位 *</span><select name="role" required><option value="">请选择</option><option>输出</option><option>坦克</option><option>辅助</option><option>混合</option></select></label>
+          <label><span>难度 *</span><select name="difficulty" required><option value="">请选择</option><option>入门</option><option>进阶</option><option>高阶</option></select></label>
+          <label><span>版本</span><input name="version" maxlength="12" placeholder="例如：三测" /></label>
+        </div>
+        <label><span>职业 / 阵容 *</span><input name="lineup" required maxlength="60" placeholder="例如：电法 + 战士T + 神官" /></label>
+        <label><span>一句话摘要 *</span><input name="summary" required maxlength="90" placeholder="说明这套 BD 最核心的特点" /></label>
+        <label><span>构筑思路 *</span><textarea name="details" required rows="5" maxlength="1200" placeholder="核心机制、技能联动、适用场景与注意事项…"></textarea></label>
+        <label><span>核心装备</span><input name="gear" maxlength="120" placeholder="用顿号分隔，例如：破碎誓言、血晶、虚空之手" /></label>
+        <label class="confirm-field"><input type="checkbox" name="confirm" required /><span>我确认这是一套经过实际体验的构筑，并愿意分享给其他玩家。</span></label>
+        <div class="form-actions">
+          <button class="button button-ghost cancel-submit" type="button">暂不登记</button>
+          <button class="button button-primary" type="submit">保存到构筑图鉴</button>
+        </div>
+      </form>
+    </div>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="app.js"></script>
+</body>
+</html>

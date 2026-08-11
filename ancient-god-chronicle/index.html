@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071312">
+  <meta name="description" content="古神编年史 0.3.2.0：装备、技能、符文、符文之语与道具资料库。">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <title>古神编年史 · 0.3.2.0</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="topbar">
+    <a class="brand" href="#top" aria-label="返回古神编年史首页">
+      <span class="brand-mark" aria-hidden="true">◈</span>
+      <span>
+        <strong>古神编年史</strong>
+        <small>THE OLD GOD ARCHIVE</small>
+      </span>
+    </a>
+
+    <label class="global-search" for="searchInput">
+      <span class="search-icon" aria-hidden="true">⌕</span>
+      <input id="searchInput" type="search" autocomplete="off" placeholder="搜索装备、技能、符文或道具…">
+      <kbd>/</kbd>
+    </label>
+
+    <div class="topbar-meta">
+      <span class="status-dot" aria-hidden="true"></span>
+      <span>资料版本</span>
+      <strong id="versionLabel">0.3.2.0</strong>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero" id="hero">
+      <div class="hero-image" aria-hidden="true"></div>
+      <div class="hero-shade" aria-hidden="true"></div>
+      <div class="hero-content">
+        <p class="eyebrow"><span></span> 放置之路 · 古神复苏资料库</p>
+        <h1>在深渊苏醒之前，<br><em>记下它的一切。</em></h1>
+        <p class="hero-copy">收录装备、职业技能、符文组合与关键道具。按名称检索，以职业和品质筛选，打开原始图鉴查看完整属性。</p>
+        <div class="hero-actions">
+          <button class="primary-action" type="button" data-jump="catalog">进入资料库 <span>→</span></button>
+          <button class="ghost-action" type="button" data-category-jump="equipment">浏览装备图鉴</button>
+        </div>
+      </div>
+
+      <div class="hero-stats" aria-label="资料统计">
+        <article>
+          <span>总档案</span>
+          <strong id="totalCount">—</strong>
+          <small>条可检索记录</small>
+        </article>
+        <article>
+          <span>装备图鉴</span>
+          <strong id="equipmentCount">—</strong>
+          <small>传说、套装及更多</small>
+        </article>
+        <article>
+          <span>技能记录</span>
+          <strong id="skillCount">—</strong>
+          <small>覆盖五大职业</small>
+        </article>
+        <article>
+          <span>符文体系</span>
+          <strong id="runeCount">—</strong>
+          <small>符文与符文之语</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="archive" id="catalog" aria-labelledby="catalogTitle">
+      <aside class="archive-nav" aria-label="资料分类">
+        <div class="nav-heading">
+          <span>ARCHIVE INDEX</span>
+          <strong>档案目录</strong>
+        </div>
+        <nav id="categoryNav"></nav>
+        <div class="archive-note">
+          <span class="archive-note-mark" aria-hidden="true">!</span>
+          <p>资料取自 <strong>0.3.2.0</strong> 工作簿。随机词条与游戏实际数值可能存在差异。</p>
+        </div>
+      </aside>
+
+      <div class="archive-main">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow dark"><span></span> DATABASE</p>
+            <h2 id="catalogTitle">全部档案</h2>
+            <p id="catalogDescription">跨分类检索古神复苏中的核心资料。</p>
+          </div>
+          <div class="result-count"><strong id="resultCount">0</strong><span>条结果</span></div>
+        </div>
+
+        <div class="filter-panel" aria-label="资料筛选">
+          <div class="filter-field">
+            <label for="qualityFilter">品质</label>
+            <select id="qualityFilter"><option value="">全部品质</option></select>
+          </div>
+          <div class="filter-field">
+            <label for="professionFilter">职业</label>
+            <select id="professionFilter"><option value="">全部职业</option></select>
+          </div>
+          <div class="filter-field">
+            <label for="subtypeFilter">类型</label>
+            <select id="subtypeFilter"><option value="">全部类型</option></select>
+          </div>
+          <div class="filter-field sort-field">
+            <label for="sortFilter">排序</label>
+            <select id="sortFilter">
+              <option value="featured">编年史顺序</option>
+              <option value="name">名称 A–Z</option>
+              <option value="category">分类优先</option>
+            </select>
+          </div>
+          <button class="reset-button" id="resetFilters" type="button">重置筛选</button>
+        </div>
+
+        <div class="active-filters" id="activeFilters" aria-live="polite"></div>
+        <div class="card-grid" id="cardGrid" aria-live="polite"></div>
+        <div class="empty-state" id="emptyState" hidden>
+          <span aria-hidden="true">∅</span>
+          <h3>档案中没有找到对应记录</h3>
+          <p>尝试缩短关键词，或清除当前品质、职业和类型筛选。</p>
+          <button type="button" id="emptyReset">查看全部档案</button>
+        </div>
+        <button class="load-more" id="loadMore" type="button" hidden>继续展开档案 <span>↓</span></button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>
+      <strong>古神编年史</strong>
+      <span>资料来源：《古神编年史（0.3.2.0）》</span>
+    </div>
+    <p>非官方资料站 · 游戏内容请以当前版本为准</p>
+  </footer>
+
+  <div class="drawer-backdrop" id="drawerBackdrop" hidden></div>
+  <aside class="detail-drawer" id="detailDrawer" aria-hidden="true" aria-labelledby="detailTitle">
+    <button class="drawer-close" id="drawerClose" type="button" aria-label="关闭详情">×</button>
+    <div class="drawer-scroll">
+      <div class="detail-head">
+        <div class="detail-icon-wrap" id="detailIconWrap"></div>
+        <div>
+          <p class="detail-kicker" id="detailKicker">档案记录</p>
+          <h2 id="detailTitle">—</h2>
+          <div class="detail-tags" id="detailTags"></div>
+        </div>
+      </div>
+      <p class="detail-summary" id="detailSummary"></p>
+      <dl class="detail-facts" id="detailFacts"></dl>
+      <section class="detail-image-section" id="detailImageSection" hidden>
+        <div class="detail-section-title">
+          <span>ORIGINAL RECORD</span>
+          <h3>完整图鉴</h3>
+        </div>
+        <div class="detail-image-frame">
+          <img id="detailImage" alt="">
+        </div>
+        <p>图鉴属性来自原始工作簿；部分非专有属性可能为随机值。</p>
+      </section>
+    </div>
+  </aside>
+
+  <template id="cardTemplate">
+    <article class="archive-card">
+      <button class="card-open" type="button">
+        <span class="rarity-line" aria-hidden="true"></span>
+        <span class="card-topline">
+          <span class="card-category"></span>
+          <span class="card-index"></span>
+        </span>
+        <span class="card-body">
+          <span class="card-icon-wrap"><img class="card-icon" alt="" loading="lazy"><span class="icon-fallback">◈</span></span>
+          <span class="card-content">
+            <strong class="card-title"></strong>
+            <span class="card-badges"></span>
+            <span class="card-summary"></span>
+          </span>
+        </span>
+        <span class="card-footer">
+          <span>查看完整档案</span>
+          <span aria-hidden="true">↗</span>
+        </span>
+      </button>
+    </article>
+  </template>
+
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,7 @@
+{
+  "name": "ancient-god-chronicle",
+  "private": true,
+  "scripts": {
+    "dev": "node tools/dev-server.mjs"
+  }
+}
